@@ -1,7 +1,12 @@
-from sklearn.utils import resample
+def import_data(csv_path):
+    import pandas as pd
 
-import pandas as pd
+    fetal_health = pd.read_csv(csv_path)
 
+    fetal_health['histogram_tendency'] = fetal_health['histogram_tendency'].astype(str)
+    fetal_health = pd.get_dummies(fetal_health)
+    fetal_health.fetal_health = fetal_health.fetal_health.astype(int).astype(str) #make outcome categorical
+    return(fetal_health)
 
 def rebalance_classes(input_df):
 
